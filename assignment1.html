@@ -27,31 +27,31 @@
             </p>
             <code>
 		// setting the starting pin number to begin the loop, it will be changed <br>
-		int pinNum = 13;
-
-		// the setup function runs once when you press reset or power the board
-		void setup() {
-  			// initialize the variable pinNum as an output.
-  			pinMode(pinNum, OUTPUT);
-		}
-
-		// the loop function runs over and over again forever
-		void loop() {
- 		// checking is pinNum is less than 11 because there are no connections past that pin
- 		if(pinNum < 11){
-  			// change pinNum to 13
-  			pinNum = 13; 
- 		}
-
- 		// writing to board to turn on and off the pinNum LED with a half second delay
- 		digitalWrite(pinNum, HIGH);
- 		delay(500);
- 		digitalWrite(pinNum,LOW);
- 		delay(500);
-
-		// setting pinNum to the next pin
- 		pinNum = pinNum - 1;
-		}
+		int pinNum = 13; <br>
+		<br>
+		// the setup function runs once when you press reset or power the board <br>
+		void setup() { <br>
+  			// initialize the variable pinNum as an output. <br>
+  			pinMode(pinNum, OUTPUT); <br>
+		} <br>
+		<br>
+		// the loop function runs over and over again forever <br>
+		void loop() { <br>
+ 		// checking is pinNum is less than 11 because there are no connections past that pin <br>
+ 		if(pinNum < 11){ <br>
+  			// change pinNum to 13 <br>
+  			pinNum = 13; <br>
+ 		} <br>
+		<br>
+ 		// writing to board to turn on and off the pinNum LED with a half second delay <br>
+ 		digitalWrite(pinNum, HIGH); <br>
+ 		delay(500); <br>
+ 		digitalWrite(pinNum,LOW); <br>
+ 		delay(500); <br>
+		<br>
+		// setting pinNum to the next pin <br>
+ 		pinNum = pinNum - 1; <br>
+		} <br>
 	    </code>
   	    <p>
             Above is the code I used in Arduino. I used a loop to cycle through the three pins I was using to communicate with each LED. 
