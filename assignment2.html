@@ -25,6 +25,65 @@
             <br>
             <br>               
             <br>
+
+            <code>
+                //defining pin 2 as the button pin, does not change<br>
+                const int buttonPin = 2;<br>
+                //defining digital output pin 9 as the LED pin, does not change<br>
+                const int ledPin = 9;<br>
+                //defining a variable for brightness<br>
+                int brightness = 0;<br>
+                //defining a variable for button state<br>
+                int buttonState = 0;<br>
+                <br>
+                //setup function<br>
+                void setup() {<br>
+                //setting up output pin<br>
+                pinMode(ledPin, OUTPUT);<br>
+                //setting up input pin<br>
+                pinMode(buttonPin, INPUT);<br>  
+                }<br>
+                <br>
+                //loop function<br>
+                void loop() {<br>
+                //buttonState will read whether the button in open (LOW) or closed (HIGH)<br>
+                buttonState = digitalRead(buttonPin);<br>
+                <br>
+                //if statement for whether or not the button state is HIGH or LOW<br>
+                if(buttonState == HIGH) {<br>
+                    //for loop to fade LED to it's brightess state<br>
+                    for(brightness = 0; brightness <= 255; brightness++) {<br>
+                    //writes to LED pin the brightness level<br>
+                    analogWrite(ledPin, brightness);<br>
+                    //5ms delay<br>
+                    delay(5);<br>
+                    }<br>
+                    //got loop to fade LED back down to an off state<br>
+                    for(brightness = 255; brightness >= 0; brightness--) {<br>
+                    //writes to LED pin the brightness level<br>
+                    analogWrite(ledPin, brightness);<br>
+                    //5ms delay<br>
+                    delay(5);<br>
+                    }<br>
+                }<br>
+                //else statement for when the button state is LOW (default)<br>
+                else {<br>
+                    //writes to LED pin being off<br>
+                    digitalWrite(ledPin, LOW);<br>
+                    }<br>
+                }<br>
+            </code>
+            <p>This is the code I used in Arduino to create this circuit. I used digitalRead to log the state of the button, analogWrite to create the fading affect in the LED, and digitalWrite to put the LED in the LOW state when the button was open.</p>
+            <br>
+            <br>
+            <br>
+
+            <p><img src="A2_gif.gif" width=400></a></p>
+            <p>This is the gif of my circuit in operation. When you press the button the LED fades to max brightness, then fades back to its lowest brightness and turns off. You can press the button while the LED is fading and nothing will happen.</p>
+            <br>
+            <br>               
+            <br
+            
         </div>
     </body>
 </html>
