@@ -18,7 +18,8 @@ a {
   background: #fff;
   color: #000;
   height: 500px;
-  padding: 30px 30px 30px 100px;
+  padding: 30px 30px 30px;
+  margin-bottom: 50px;
 }
 
 .header h1 {
