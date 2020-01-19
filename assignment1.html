@@ -13,68 +13,56 @@
 
         <div class="header">
             <h1>Assignment 1</h1>
-            <p>
-            <img src="Schematic.png" width=400></a>
-            </p>
-            <p>
-            This is the schematic for my circuit. I choose 220 Ohm resistors because the lowest voltage drop LED used was RED, requiring a 173 Ohm resistor, so I played it safe and used 220 Ohm resistors for every LED. 
-            </p>
-	    <br>
-	    <br>
-            <br>
-	    <p>
-            <img src="20200111_131533.jpg" width=400></a>
-            </p>
-            <p>
-            This is my circuit, each LED is connected to its own pin in the UNO board. This allows for direct input to each LED from Arduino the application. 
-            </p>
-	    <br>
-	    <br>
-            <br>
+            <p><img src="Schematic.png" width=400></a></p>
+            <p>This is the schematic for my circuit. I choose 220 Ohm resistors because the lowest voltage drop LED used was RED, requiring a 173 Ohm resistor, so I played it safe and used 220 Ohm resistors for every LED.</p>
+	    	<br>
+	    	<br>
+			<br>
+			
+	   		<p><img src="20200111_131533.jpg" width=400></a></p>
+            <p>This is my circuit, each LED is connected to its own pin in the UNO board. This allows for direct input to each LED from Arduino the application.</p>
+	    	<br>
+	    	<br>
+			<br>
+			
             <code>
-		// setting the starting pin number to begin the loop, it will be changed <br>
-		int pinNum = 13; <br>
-		<br>
-		// the setup function runs once when you press reset or power the board <br>
-		void setup() { <br>
-  			// initialize the variable pinNum as an output. <br>
-  			pinMode(pinNum, OUTPUT); <br>
-		} <br>
-		<br>
-		// the loop function runs over and over again forever <br>
-		void loop() { <br>
- 		// checking is pinNum is less than 11 because there are no connections past that pin <br>
- 		if(pinNum < 11){ <br>
-  			// change pinNum to 13 <br>
-  			pinNum = 13; <br>
- 		} <br>
-		<br>
- 		// writing to board to turn on and off the pinNum LED with a half second delay <br>
- 		digitalWrite(pinNum, HIGH); <br>
- 		delay(500); <br>
- 		digitalWrite(pinNum,LOW); <br>
- 		delay(500); <br>
-		<br>
-		// setting pinNum to the next pin <br>
- 		pinNum = pinNum - 1; <br>
-		} <br>
-	    </code>
-  	    <p>
-            Above is the code I used in Arduino. I used a loop to cycle through the three pins I was using to communicate with each LED. 
-            </p>
-	    <br>
-	    <br>
+			// setting the starting pin number to begin the loop, it will be changed <br>
+			int pinNum = 13; <br>
+			<br>
+			// the setup function runs once when you press reset or power the board <br>
+			void setup() { <br>
+				// initialize the variable pinNum as an output. <br>
+				pinMode(pinNum, OUTPUT); <br>
+			} <br>
+			<br>
+			// the loop function runs over and over again forever <br>
+			void loop() { <br>
+			// checking is pinNum is less than 11 because there are no connections past that pin <br>
+			if(pinNum < 11){ <br>
+				// change pinNum to 13 <br>
+				pinNum = 13; <br>
+			} <br>
+			<br>
+			// writing to board to turn on and off the pinNum LED with a half second delay <br>
+			digitalWrite(pinNum, HIGH); <br>
+			delay(500); <br>
+			digitalWrite(pinNum,LOW); <br>
+			delay(500); <br>
+			<br>
+			// setting pinNum to the next pin <br>
+			pinNum = pinNum - 1; <br>
+			} <br>
+			</code>
+  	    	<p>Above is the code I used in Arduino. I used a loop to cycle through the three pins I was using to communicate with each LED.</p>
+	    	<br>
+	    	<br>
+			<br>
+			
+	    	<p><img src="giphy.gif" width=400></a></p>
+            <p>Here is the GIF of my circuit running, it flashes in the order of red, white, and then blue.</p>
+	    	<br>
+	    	<br>
             <br>
-	    <p>
-            <img src="giphy.gif" width=400></a>
-            </p>
-            <p>
-            Here is the GIF of my circuit running, it flashes in the order of red, white, and then blue.
-            </p>
-	    <br>
-	    <br>
-            <br>
-        </div>
-        
+        </div>    
     </body>
 </html>
