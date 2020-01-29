@@ -15,71 +15,75 @@
             <a href="index.html"> <h2>BACK</h2> </a>
             <h1>Assignment 2</h1>
             <br>
-            <p><img src="A2_Schematic.png" width=400></a></p>
+            <p><img src="A3_schematic.png" width=400></a></p>
             <p>This is the schematic for my circuit. I choose a 220 Ohm resistor to feed into the LED because a RED LED has a voltage drop of 1.8V and a desired amp of 0.02A. Given the equation, V=IR the optimal resistor is 160 Ohms. The closets resistor I have to that value is 220 Ohms.</p>
             <br>
             <br>
             <br>
                 
-            <p><img src="20200119_001337.jpg" width=400></a></p>
+            <p><img src="20200128_193437.jpg" width=400></a></p>
             <p>This is my circuit. I choose a 10K Ohm resistor to connect the button and the UNO board because that was the resistor used in the Arduino Button example. Very little current is needed to allow the communication between the button and the board, therefore a 10K Ohm resistor was used.</p>
             <br>
             <br>               
             <br>
 
             <code>
-                //defining pin 2 as the button pin, does not change<br>
-                const int buttonPin = 2;<br>
-                //defining digital output pin 9 as the LED pin, does not change<br>
-                const int ledPin = 9;<br>
-                //defining a variable for brightness<br>
-                int brightness = 0;<br>
-                //defining a variable for button state<br>
-                int buttonState = 0;<br>
-                <br>
-                //setup function<br>
-                void setup() {<br>
-                //setting up output pin<br>
-                pinMode(ledPin, OUTPUT);<br>
-                //setting up input pin<br>
-                pinMode(buttonPin, INPUT);<br>
-                }<br>
-                <br>
-                //loop function<br>
-                void loop() {<br>
-                //buttonState will read whether the button in open (LOW) or closed (HIGH)<br>
-                buttonState = digitalRead(buttonPin);<br>
-                <br>
-                //if statement for whether or not the button state is HIGH or LOW<br>
-                if(buttonState == HIGH) {<br>
-                    //for loop to fade LED to it's brightess state<br>
-                    for(brightness = 0; brightness <= 255; brightness++) {<br>
-                    //writes to LED pin the brightness level<br>
-                    analogWrite(ledPin, brightness);<br>
-                    //5ms delay<br>
-                    delay(5);<br>
-                    }<br>
-                    //got loop to fade LED back down to an off state<br>
-                    for(brightness = 255; brightness >= 0; brightness--) {<br>
-                    //writes to LED pin the brightness level<br>
-                    analogWrite(ledPin, brightness);<br>
-                    //5ms delay<br>
-                    delay(5);<br>
-                    }<br>
-                }<br>
-                //else statement for when the button state is LOW (default)<br>
-                else {<br>
-                    //writes to LED pin being off<br>
-                    digitalWrite(ledPin, LOW);<br>
-                    }<br>
-                }<br>
+            //defining variable sensorValue as 0<br>
+            int sensorValue = 0;<br>
+            //defining variable outputValue as 0<br>
+            int output = 0;<br>
+
+            //setup function<br>
+            void setup() {<br>
+            //setup serial<br>
+            Serial.begin(9600);<br>
+            }<br>
+            <br>
+            //loop function<br>
+            void loop() {<br>
+            //reading and storing sensor value<br>
+            sensorValue = analogRead(A0);<br>
+            //converting sensor value range<br>
+            output = map(sensorValue, 50, 100, 0, 255);<br>
+            <br>
+            //if statement for turning on either the red or green LED<br>
+            if(output > 100){<br>
+                <BLOCKQUOTE>    
+                //if the photoresistor is receiving at least the average amount of light in my room the green LED is on<br>
+                analogWrite(3, 100);<br>
+                //and the red LED is off<br>
+                analogWrite(5, 0);<br>
+                </BLOCKQUOTE>
+            }<br>
+            //else statement for red LED<br>
+            else {<br>
+                <BLOCKQUOTE>
+                //if the photoresistor is not receiving at least the average amount of light in my room the red LED is on <br>
+                analogWrite(5, 100);<br>
+                // and the green LED is off<br>
+                analogWrite(3, 0);  <br>
+                </BLOCKQUOTE>
+            }<br>
+            <br>
+            //serial print statement for text<br>
+            Serial.print("Sensor= ");<br>
+            //for the sensorValue variable value<br>
+            Serial.print(sensorValue);<br>
+            //for tab and text<br>
+            Serial.print("\t LED= ");<br>
+            //for the output variable value<br>
+            Serial.println(output);<br>
+            <br>
+            //delay 5ms<br>
+            delay(5);<br>
+            }<br>
             </code>
             <p>This is the code I used in Arduino to create this circuit. I used digitalRead to log the state of the button, analogWrite to create the fading affect in the LED, and digitalWrite to put the LED in the LOW state when the button was open.</p>
             <br>
             <br>
             <br>
 
-            <p><img src="giphy1.gif"></a></p>
+            <p><img src="giphy3.gif"></a></p>
             <p>This is the gif of my circuit in operation. When you press the button the LED fades to max brightness, then fades back to its lowest brightness and turns off. You can press the button while the LED is fading and nothing will happen.</p>
             <br>
             <br>               
