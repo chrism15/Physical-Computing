@@ -45,6 +45,8 @@
             sensorValue = analogRead(A0);<br>
             //converting sensor value range<br>
             output = map(sensorValue, 50, 100, 0, 255);<br>
+            //constraining output to be between 0 and 255<br>
+            output = constrain(output, 0, 255);<br>
             <br>
             //if statement for turning on either the red or green LED<br>
             if(output > 100){<br>
@@ -66,11 +68,7 @@
             }<br>
             <br>
             //serial print statement for text<br>
-            Serial.print("Sensor= ");<br>
-            //for the sensorValue variable value<br>
-            Serial.print(sensorValue);<br>
-            //for tab and text<br>
-            Serial.print("\t LED= ");<br>
+            Serial.print("LED= ");<br>
             //for the output variable value<br>
             Serial.println(output);<br>
             <br>
