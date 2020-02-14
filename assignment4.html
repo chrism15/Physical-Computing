@@ -1,0 +1,91 @@
+<!DOCTYPE html> 
+<html> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+        <title>HCDE 439</title> 
+
+        <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
+
+    </head> 
+    <body> 
+
+        <div class="header">
+            <a href="index.html"> <h2>BACK</h2> </a>
+            <h1>Assignment 3</h1>
+            <br>
+            <p><img src="A3_Schematic.jpg" width=400></a></p>
+            <p>This is the schematic for my circuit. I choose a to use a 220 Ohm resistor because the RED LED has a voltage drop of 1.8V, which is a lower voltage drop than the GREEN LED, and a desired amp of 0.02A. Given the equation, V=IR the optimal resistor is 160 Ohms. The closets resistor I have to that value is 220 Ohms.</p>
+            <br>
+            <br>
+            <br>
+                
+            <p><img src="20200128_193437.jpg" width=400></a></p>
+            <p>This is my circuit. I am using a photoresistor to toggle on the GREEN and RED LED. When the photoresistor receives average room lighting, the GREEN LED receives the 5V. And when the photoresistor receives less than average room lighting (covered), the RED LED receives 5V.</p>
+            <br>
+            <br>               
+            <br>
+
+            <code>
+            //defining variable sensorValue as 0<br>
+            int sensorValue = 0;<br>
+            //defining variable outputValue as 0<br>
+            int output = 0;<br>
+
+            //setup function<br>
+            void setup() {<br>
+            //setup serial<br>
+            Serial.begin(9600);<br>
+            }<br>
+            <br>
+            //loop function<br>
+            void loop() {<br>
+            //reading and storing sensor value<br>
+            sensorValue = analogRead(A0);<br>
+            //converting sensor value range<br>
+            output = map(sensorValue, 50, 100, 0, 255);<br>
+            //constraining output to be between 0 and 255<br>
+            output = constrain(output, 0, 255);<br>
+            <br>
+            //if statement for turning on either the red or green LED<br>
+            if(output > 100){<br>
+                <BLOCKQUOTE>    
+                //if the photoresistor is receiving at least the average amount of light in my room the green LED is on<br>
+                analogWrite(3, 100);<br>
+                //and the red LED is off<br>
+                analogWrite(5, 0);<br>
+                </BLOCKQUOTE>
+            }<br>
+            //else statement for red LED<br>
+            else {<br>
+                <BLOCKQUOTE>
+                //if the photoresistor is not receiving at least the average amount of light in my room the red LED is on <br>
+                analogWrite(5, 100);<br>
+                // and the green LED is off<br>
+                analogWrite(3, 0);  <br>
+                </BLOCKQUOTE>
+            }<br>
+            <br>
+            //serial print statement for text<br>
+            Serial.print("LED= ");<br>
+            //for the output variable value<br>
+            Serial.println(output);<br>
+            <br>
+            //delay 5ms<br>
+            delay(5);<br>
+            }<br>
+            </code>
+            <p>This is the code I used in Arduino to create this circuit. I used Serial to log the values of my photoresistor and LEDs. I used analogRead to read the photoresistor value. I used map and constraint to convert the photoresistor value to an LED value. And I used to analogWrite to write to each LED the desired value./p>
+            <br>
+            <br>
+            <br>
+
+            <p><img src="giphy3.gif"></a></p>
+            <p>This is the gif of my circuit in operation. WHen the photoresistor is uncovered the GREEN LED is on. When the photoresistor is covered the RED LED is on.</p>
+            <br>
+            <br>               
+            <br>         
+        </div>
+    </body>
+</html>
