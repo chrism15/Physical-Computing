@@ -13,7 +13,7 @@
 
         <div class="header">
             <a href="index.html"> <h2>BACK</h2> </a>
-            <h1>Assignment 3</h1>
+            <h1>Assignment 4</h1>
             <br>
             <p><img src="A3_Schematic.jpg" width=400></a></p>
             <p>This is the schematic for my circuit. I choose a to use a 220 Ohm resistor because the RED LED has a voltage drop of 1.8V, which is a lower voltage drop than the GREEN LED, and a desired amp of 0.02A. Given the equation, V=IR the optimal resistor is 160 Ohms. The closets resistor I have to that value is 220 Ohms.</p>
@@ -28,52 +28,54 @@
             <br>
 
             <code>
-            //defining variable sensorValue as 0<br>
-            int sensorValue = 0;<br>
-            //defining variable outputValue as 0<br>
-            int output = 0;<br>
-
+            //calling IR remote library<br>
+            #include <IRremote.h><br>
+            <br>
+            //defining variable rate as 0<br>
+            int rate = 0;<br>
+            //defining variable RECV_PIN as 7<br>
+            const int RECV_PIN = 7;<br>
+            //creating an object for IR protocols and processing of the receiver<br>
+            IRrecv irrecv(RECV_PIN);<br>
+            //creating an object to decode information from the remote<br>
+            decode_results results;<br>
+            //defing variable fanPin as 9<br>
+            const int fanPin = 9;<br>
+            <br>
             //setup function<br>
-            void setup() {<br>
-            //setup serial<br>
-            Serial.begin(9600);<br>
+            void setup(){<br>
+                <BLOCKQUOTE>
+                //IR protocols and processes<br>
+                irrecv.enableIRIn();<br>
+                //IR protocols and processes<br> 
+                irrecv.blink13(true);<br>
+                //defining pinMode<br>
+                pinMode(fanPin, OUTPUT);<br>
+                </BLOCKQUOTE>
             }<br>
             <br>
             //loop function<br>
-            void loop() {<br>
-            //reading and storing sensor value<br>
-            sensorValue = analogRead(A0);<br>
-            //converting sensor value range<br>
-            output = map(sensorValue, 50, 100, 0, 255);<br>
-            //constraining output to be between 0 and 255<br>
-            output = constrain(output, 0, 255);<br>
-            <br>
-            //if statement for turning on either the red or green LED<br>
-            if(output > 100){<br>
-                <BLOCKQUOTE>    
-                //if the photoresistor is receiving at least the average amount of light in my room the green LED is on<br>
-                analogWrite(3, 100);<br>
-                //and the red LED is off<br>
-                analogWrite(5, 0);<br>
-                </BLOCKQUOTE>
-            }<br>
-            //else statement for red LED<br>
-            else {<br>
+            void loop(){<br>
                 <BLOCKQUOTE>
-                //if the photoresistor is not receiving at least the average amount of light in my room the red LED is on <br>
-                analogWrite(5, 100);<br>
-                // and the green LED is off<br>
-                analogWrite(3, 0);  <br>
+                //if statement checking if information is received<br>
+                if (irrecv.decode(&results)){<br>
+                    <BLOCKQUOTE>
+                    //switch statement to hand IR code<br>
+                    switch(results.value){<br>
+                        <BLOCKQUOTE>
+                        //case 1 for IR input<br>
+                        case  0xFF30CF: //Keypad button "1"<br>
+                        //defining rate as 50<br>
+                        rate = 50;<br>
+                        </BLOCKQUOTE>
+                    }<br>
+                    //reset receiver<br>
+                    irrecv.resume(); <br>
+                    </BLOCKQUOTE>
+                }<br>
+                //writes to motor the rate<br>
+                analogWrite(fanPin, rate);<br>
                 </BLOCKQUOTE>
-            }<br>
-            <br>
-            //serial print statement for text<br>
-            Serial.print("LED= ");<br>
-            //for the output variable value<br>
-            Serial.println(output);<br>
-            <br>
-            //delay 5ms<br>
-            delay(5);<br>
             }<br>
             </code>
             <p>This is the code I used in Arduino to create this circuit. I used Serial to log the values of my photoresistor and LEDs. I used analogRead to read the photoresistor value. I used map and constraint to convert the photoresistor value to an LED value. And I used to analogWrite to write to each LED the desired value./p>
@@ -81,8 +83,8 @@
             <br>
             <br>
 
-            <p><img src="giphy3.gif"></a></p>
-            <p>This is the gif of my circuit in operation. WHen the photoresistor is uncovered the GREEN LED is on. When the photoresistor is covered the RED LED is on.</p>
+            <p><img src="giphy4.gif"></a></p>
+            <p>This is the gif of my circuit in operation. When I press the number one of the remote the fan turns on.</p>
             <br>
             <br>               
             <br>         
