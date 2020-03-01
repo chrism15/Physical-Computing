@@ -13,7 +13,7 @@
 
         <div class="header">
             <a href="index.html"> <h2>BACK</h2> </a>
-            <h1>Assignment 5</h1>
+            <h1>Assignment 6</h1>
             <br>
             <p><img src="A5_Schematic.jpg" width=400></a></p>
             <p>This is the schematic for my circuit. It's fairly straight forward. The joystick has two potentiometers (x and y). The user moves the joystick around to change the value of the potentiometer.</p>
@@ -21,7 +21,7 @@
             <br>
             <br>
                 
-            <p><img src="20200224_122733.jpg" width=400></a></p>
+            <p><img src="20200229_202314.jpg" width=400></a></p>
             <p>This is my circuit. The joystick connects directly to the UNO board's power and ground. The X and Y potentiometer connections of the joystick are connected to the UNO board's A1 and A2. Simple like the schematic.</p>
             <br>
             <br>               
@@ -30,31 +30,56 @@
             <code>
                 //setup function<br>
                 void setup() {<br>
-                    <BLOCKQUOTE>
-                    //serial setup<br>
-                    Serial.begin(9600);<br>
-                    </BLOCKQUOTE>
+                <BLOCKQUOTE>
+                  //serial setup<br>
+                  Serial.begin(9600);<br>
+                  //pinMode setup for LED<br>
+                  pinMode(5, OUTPUT);<br>
+                </BLOCKQUOTE>
                 }<br>
                 <br>
                 //loop function<br>
                 void loop() {<br>
+                <BLOCKQUOTE>
+                  //defining s1 variable<br>
+                  int s1 = analogRead(1);<br>
+                  //defining s2 variable<br>
+                  int s2 = analogRead(2);<br>
+                  //serial making an array<br>
+                  Serial.print("[");<br>
+                  //putting s1 in serial array<br>
+                  Serial.print(s1);<br>
+                  // serial array<br>
+                  Serial.print(",");<br>
+                  //putting s2 in serial array<br>
+                  Serial.print(s2);<br>
+                  //closing serial array<br>
+                  Serial.println("]");<br>
+                  <br>
+                  //if statement checking for serial data <br>
+                  if (Serial.available() > 0) {<br>
                     <BLOCKQUOTE>
-                    //defining s1 variable<br>
-                    int s1 = analogRead(1);<br>
-                    //defining s2 variable<br>
-                    int s2 = analogRead(2);<br>
-                    <br>
-                    //serial making an array<br>
-                    Serial.print("[");<br>
-                    //putting s1 in serial array<br>
-                    Serial.print(s1);<br>
-                    // serial array<br>
-                    Serial.print(",");<br>
-                    //putting s2 in serial array<br>
-                    Serial.print(s2);<br>
-                    //closing serial array<br>
-                    Serial.println("]");<br>
+                  //reading serial data<br>
+                  int inByte = Serial.read();<br>
+                  //converting sata to raw binary data<br>
+                  Serial.write(inByte);<br>
+                  //if statement for space bar<br>
+                  if (inByte == 32){<br>
+                    <BLOCKQUOTE>
+                    //if space bar was the last key pressed turn LED on<br>
+                    analogWrite(5, 50);<br>
                     </BLOCKQUOTE>
+                  }<br>
+                  //else statement<br>
+                  else{<br>
+                    <BLOCKQUOTE>
+                    //if another key is pressed turn LED off<br>
+                    analogWrite(5, 0);<br>
+                    </BLOCKQUOTE>
+                  }<br>
+                </BLOCKQUOTE>
+                 }<br>
+                </BLOCKQUOTE>
                 }<br>
             </code>
             <br>
@@ -144,11 +169,17 @@
                 </BLOCKQUOTE>
                 }<br>
                 <br>
+                function keyPressed() {<br>
+                <BLOCKQUOTE>
+                    console.log("writing key");<br>
+                    serial.write(key);<br>
+                </BLOCKQUOTE>
+                }<br>
                 function draw() {<br>
-                    <BLOCKQUOTE>
-                    background(0xff, 0x16, 0x40);<br>
+                <BLOCKQUOTE>
+                    background(25);<br>
                     ellipse(dataarray[0], dataarray[1], 50,50);<br>
-                    </BLOCKQUOTE>
+                </BLOCKQUOTE>
                 }<br>
             </code>
             <p>This is the code I used in Arduino to create this circuit and webpage. The firmware creates an array with the potentiometers' values and that is read by the JavaScript which spares that array into the potentiometers' values. These values are reflected on the webpage by a white cirlce's place in a pink box, as shown below.</p>
@@ -156,7 +187,7 @@
             <br>
             <br>
 
-            <p><img src="giphy5.gif"></a></p>
+            <p><img src="giphy6.gif"></a></p>
             <p>This is the gif of my circuit and webpage in operation. When I move the joystick it is reflected by the white dot on screen.<br><br> Code sourced from: https://github.com/machineagency/hcde439</p>
             <br>
             <br>               
