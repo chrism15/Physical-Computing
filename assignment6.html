@@ -15,14 +15,14 @@
             <a href="index.html"> <h2>BACK</h2> </a>
             <h1>Assignment 6</h1>
             <br>
-            <p><img src="A5_Schematic.jpg" width=400></a></p>
-            <p>This is the schematic for my circuit. It's fairly straight forward. The joystick has two potentiometers (x and y). The user moves the joystick around to change the value of the potentiometer.</p>
+            <p><img src="A6_Schematic.jpg" width=400></a></p>
+            <p>This is the schematic for my circuit. It's similiar to my previous one, except for the LED. The joystick has two potentiometers (x and y). The user moves the joystick around to change the value of the potentiometer. The LED was added to be responsive to the user's press of the space key on the keyboard.</p>
             <br>
             <br>
             <br>
                 
             <p><img src="20200229_202314.jpg" width=400></a></p>
-            <p>This is my circuit. The joystick connects directly to the UNO board's power and ground. The X and Y potentiometer connections of the joystick are connected to the UNO board's A1 and A2. Simple like the schematic.</p>
+            <p>This is my circuit. The joystick connects directly to the UNO board's power and ground. The X and Y potentiometer connections of the joystick are connected to the UNO board's A1 and A2. The LED is connected to ground and pin 5. There is a 220 Ohms resistor between pin 5 and the LED. A 220 Ohm resistor was used because a blue LED has a voltage drop of 1.8V and a desired ampage of 0.02A. Given the equation, V=IR, the optimal resistor is 160 Ohms. 220 Ohms was the closets I had. </p>
             <br>
             <br>               
             <br>
@@ -182,13 +182,13 @@
                 </BLOCKQUOTE>
                 }<br>
             </code>
-            <p>This is the code I used in Arduino to create this circuit and webpage. The firmware creates an array with the potentiometers' values and that is read by the JavaScript which spares that array into the potentiometers' values. These values are reflected on the webpage by a white cirlce's place in a pink box, as shown below.</p>
+            <p>This is the code I used in Arduino to create this circuit and webpage. The firmware creates an array with the potentiometers' values and that is read by the JavaScript which spares that array into the potentiometers' values. These values are reflected on the webpage by a white cirlce's place in a pink box, as shown below. There is also a key pressed function that tracks the keys pressed on the keyboard, the firmware then uses this data to turn on/off the LED on the board.</p>
             <br>
             <br>
             <br>
 
             <p><img src="giphy6.gif"></a></p>
-            <p>This is the gif of my circuit and webpage in operation. When I move the joystick it is reflected by the white dot on screen.<br><br> Code sourced from: https://github.com/machineagency/hcde439</p>
+            <p>This is the gif of my circuit and webpage in operation. When I move the joystick it is reflected by the white dot on screen. And when I press the space bar the LED turns on. When I press a different key it turns off.<br><br> Code sourced from: https://github.com/machineagency/hcde439</p>
             <br>
             <br>               
             <br>         
